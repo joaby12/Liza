@@ -16,4 +16,7 @@ install:
 
 script:
   - pipenv run flake8 .
-  - pipenv run pytest
+  - pipenv run pytest --cov=colibri
+
+after_sucess:
+- pipenv run codecov
