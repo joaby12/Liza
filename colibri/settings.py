@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from functools import partial
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import dj_database_url
 from decouple import config
@@ -167,3 +169,8 @@ if AWS_ACCESS_KEY_ID:
 
     INSTALLED_APPS.append('s3_folder_storage')
     INSTALLED_APPS.append('storages')
+
+    SENTRY_DSN = config('SENTRY_DSN', default=None)
+
+    if SENTRY_DSN:
+        sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
