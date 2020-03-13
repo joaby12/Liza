@@ -1,41 +1,60 @@
-// Global styling for this template
-body,
+// Global component styles
+
 html {
-  width: 100%;
+  position: relative;
+  min-height: 100%;
+}
+
+body {
   height: 100%;
 }
 
-// Typography
-.text-white-75 {
-  color: fade-out($white, .25);
+a {
+  &:focus {
+    outline: none;
+  }
 }
 
-// Custom horizontal rules
-hr.divider {
-  max-width: 3.25rem;
-  border-width: 0.2rem;
-  border-color: $primary;
+// Main page wrapper
+#wrapper {
+  display: flex;
+  #content-wrapper {
+    background-color: $gray-100;
+    width: 100%;
+    overflow-x: hidden;
+    #content {
+      flex: 1 0 auto;
+    }
+  }
 }
 
-hr.light {
-  border-color: $white;
+// Set container padding to match gutter width instead of default 15px
+.container,
+.container-fluid {
+  padding-left: $grid-gutter-width;
+  padding-right: $grid-gutter-width;
 }
 
-// Button restyling
-.btn {
-  font-family: $font-family-sans-serif;
-}
-
-.btn-xl {
-  padding: 1.25rem 2.25rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 10rem;
-}
-
-// Page section padding
-.page-section {
-  padding: 8rem 0;
+// Scroll to top button
+.scroll-to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  text-align: center;
+  color: $white;
+  background: fade-out($gray-800, .5);
+  line-height: 46px;
+  &:focus,
+  &:hover {
+    color: white;
+  }
+  &:hover {
+    background: $gray-800;
+  }
+  i {
+    font-weight: 800;
+  }
 }

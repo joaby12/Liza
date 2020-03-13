@@ -50,27 +50,34 @@ function clean() {
 // Bring third party dependencies from node_modules into vendor directory
 function modules() {
   // Bootstrap JS
-  var bootstrap = gulp.src('./node_modules/bootstrap/dist/js/**/*')
+  var bootstrapJS = gulp.src('./node_modules/bootstrap/dist/js/*')
     .pipe(gulp.dest('./vendor/bootstrap/js'));
-  // Font Awesome CSS
-  var fontAwesomeCSS = gulp.src('./node_modules/@fortawesome/fontawesome-free/css/**/*')
-    .pipe(gulp.dest('./vendor/fontawesome-free/css'));
-  // Font Awesome Webfonts
-  var fontAwesomeWebfonts = gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/**/*')
-    .pipe(gulp.dest('./vendor/fontawesome-free/webfonts'));
+  // Bootstrap SCSS
+  var bootstrapSCSS = gulp.src('./node_modules/bootstrap/scss/**/*')
+    .pipe(gulp.dest('./vendor/bootstrap/scss'));
+  // ChartJS
+  var chartJS = gulp.src('./node_modules/chart.js/dist/*.js')
+    .pipe(gulp.dest('./vendor/chart.js'));
+  // dataTables
+  var dataTables = gulp.src([
+      './node_modules/datatables.net/js/*.js',
+      './node_modules/datatables.net-bs4/js/*.js',
+      './node_modules/datatables.net-bs4/css/*.css'
+    ])
+    .pipe(gulp.dest('./vendor/datatables'));
+  // Font Awesome
+  var fontAwesome = gulp.src('./node_modules/@fortawesome/**/*')
+    .pipe(gulp.dest('./vendor'));
   // jQuery Easing
   var jqueryEasing = gulp.src('./node_modules/jquery.easing/*.js')
     .pipe(gulp.dest('./vendor/jquery-easing'));
-  // Magnific Popup
-  var magnificPopup = gulp.src('./node_modules/magnific-popup/dist/*')
-    .pipe(gulp.dest('./vendor/magnific-popup'));
   // jQuery
   var jquery = gulp.src([
       './node_modules/jquery/dist/*',
       '!./node_modules/jquery/dist/core.js'
     ])
     .pipe(gulp.dest('./vendor/jquery'));
-  return merge(bootstrap, fontAwesomeCSS, fontAwesomeWebfonts, jquery, jqueryEasing, magnificPopup);
+  return merge(bootstrapJS, bootstrapSCSS, chartJS, dataTables, fontAwesome, jquery, jqueryEasing);
 }
 
 // CSS task
@@ -103,7 +110,7 @@ function js() {
   return gulp
     .src([
       './js/*.js',
-      '!./js/*.min.js'
+      '!./js/*.min.js',
     ])
     .pipe(uglify())
     .pipe(header(banner, {
