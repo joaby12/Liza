@@ -83,10 +83,10 @@
         },
         "django-storages": {
             "hashes": [
-                "sha256:1e37da57678e6cf1e9914f84099a305323e4e1f261afe54fdb703cae7aa6fbc3",
-                "sha256:36ed8dab33d761954498189592ce005920095fcbc02dab4184eb51393c370991"
+                "sha256:b3fdb4337b1e54b8a23fe41c62d91648e26249f9fc00e882d1d09e16207aa204",
+                "sha256:b76fb6758ff6251565d07a18fe051ca1dc886921052cd5a7e373442449c72a4a"
             ],
-            "version": "==1.10"
+            "version": "==1.12"
         },
         "docutils": {
             "hashes": [
